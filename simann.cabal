@@ -1,0 +1,34 @@
+Name:		simann
+Version:	0.0
+Synopsis:	Wrapper for GSL simulated annealing routine
+Description: 	Haskell FFI Wrapper for gsl_siman.  
+License: 	BSD3
+License-file:	LICENSE
+Author:		Ian-Woo Kim
+Maintainer: 	Ian-Woo Kim <ianwookim@gmail.com>
+Build-Depends:	base>4
+Build-Type: 	Simple
+
+hs-source-dirs: src
+ghc-options: 	-Wall -O2 -threaded -funbox-strict-fields -fno-warn-unused-do-bind
+ghc-prof-options: -caf-all -auto-all
+
+Exposed-Modules: 
+		 HEP.Minimizer.GSLSimulatedAnnealing
+
+Extra-source-files: csrc/simann.h
+
+Extensions:	 ForeignFunctionInterface
+
+Install-includes: csrc/simann.h
+C-sources: 	csrc/simann.c
+
+
+--Include-dirs: 	rootcode
+--		$(ROOTSYS)/include 
+--		/home/wavewave/nfs/root/include
+
+
+
+--extra-lib-dirs: /home/wavewave/nfs/root/lib
+--extra-libraries: stdc++,   
