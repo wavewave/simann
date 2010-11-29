@@ -1,11 +1,11 @@
-{-# LANGUAGE ForeignFunctionInterface #-}
+{-# LANGUAGE ForeignFunctionInterface, BangPatterns #-}
 
 --
 -- Ugly code using global state but this is the fastest way. 
 --
 
 --
--- Not sure whether I do not have memory leak when returning a list of CDouble 
+--
 --
 
 module HEP.Minimizer.GSLSimulatedAnnealing.Annealing where
@@ -37,9 +37,10 @@ makeCfunc1D  f = \x voidpointer -> realToFrac $ f (realToFrac x)
                      
 makeCfunc2D :: ((Double, Double) -> Double) 
                -> (CDouble -> CDouble -> Ptr () -> CDouble)
-makeCfunc2D  f = \x y voidpointer -> 
-  realToFrac $ f (realToFrac x, realToFrac y) 
-
+makeCfunc2D f !x !y !voidpointer =  realToFrac $ f (realToFrac x, realToFrac y) 
+ {- \x y voidpointer -> -}
+                                    
+                                    
 makeCfunc2D2D :: ((Double, Double) -> (Double, Double) -> Double) 
                -> (CDouble -> CDouble -> CDouble -> CDouble -> Ptr () -> CDouble)
 makeCfunc2D2D f = \x y z w voidpointer -> 

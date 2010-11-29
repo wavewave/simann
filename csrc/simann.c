@@ -23,8 +23,8 @@ void siman_solve_2d ( double x, double y,
     double *xarr = (double *) xp;
     double x = xarr[0] ; 
     double y = xarr[1]; 
-    
-    return e1(x,y) ; // exp(-pow((x-1.0),2.0) - pow((y-1.0),2.0))*sin(8*x)*cos(8*y);
+
+    return e1(x,y) ; 
   }
   double M1(void *xp, void *yp)
   {
@@ -36,7 +36,7 @@ void siman_solve_2d ( double x, double y,
     double y1 = yarr[0]; 
     double y2 = yarr[1];
   
-    return m1(x1,x2,y1,y2) ; // (x1-y1)*(x1-y1) + (x2-y2)*(x2-y2);
+    return m1(x1,x2,y1,y2) ; 
   }
 
   void S1(const gsl_rng * r, void *xp, double step_size)
@@ -58,8 +58,8 @@ void siman_solve_2d ( double x, double y,
 
   void P1(void *xp)
   {
-    double *xarr = (double*) xp ;
-    printf ("%12g %12g", xarr[0] , xarr[1] );
+    //    double *xarr = (double*) xp ;
+    // printf ("%12g %12g", xarr[0] , xarr[1] );
   }
 
   const gsl_rng_type * T;
@@ -73,12 +73,14 @@ void siman_solve_2d ( double x, double y,
   T = gsl_rng_default;
   r = gsl_rng_alloc(T);
   
-  gsl_siman_solve(r, &x_initial, E1, S1, M1, P1,
+  gsl_siman_solve(r, &x_initial, E1, S1, M1, NULL,
 		  NULL, NULL, NULL, 
 		  sizeof(double)*2, params);
+
+  *rx = x_initial[0]; 
+  *ry = x_initial[1];
   
   gsl_rng_free (r);
-  return 0;
   
   
 } 
