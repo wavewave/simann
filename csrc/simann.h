@@ -3,7 +3,6 @@
 
 void siman_solve_2d ( double x, double y, 
 		      double e1(double, double), 
-		      double s1(double, double, double, double),  
 		      double m1(double, double, double, double),
 		      int n_tries, 
 		      int iters_fixed_t, 

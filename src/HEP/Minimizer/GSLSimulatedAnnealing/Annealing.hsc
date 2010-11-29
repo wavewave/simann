@@ -27,7 +27,7 @@ type CFunc2D2D = CDouble -> CDouble -> CDouble -> CDouble -> Ptr () -> CDouble
 
 foreign import ccall "simann.h siman_solve_2d" c_siman_solve_2d
   :: CDouble -> CDouble 
-     -> (FunPtr CFunc2D) -> (FunPtr CFunc2D2D) -> (FunPtr CFunc2D2D) 
+     -> (FunPtr CFunc2D) -> (FunPtr CFunc2D2D) 
      -> CInt -> CInt -> CDouble -> CDouble -> CDouble -> CDouble -> CDouble 
      -> (Ptr CDouble) -> (Ptr CDouble)
      -> IO () 

@@ -14,12 +14,12 @@ simanSolve2d :: (Double,Double)
                 -> SimulatedAnnealingParam 
                 -> IO (Double,Double)
 simanSolve2d (x,y) safunc2d saparam = do 
-  let (e1 :: (CDouble -> CDouble -> Ptr () -> CDouble)) = makeCfunc2D   $ safunc2d'energy safunc2d
-      s1 = makeCfunc2D2D $ safunc2d'step safunc2d
+  let e1 = makeCfunc2D   $ safunc2d'energy safunc2d
+--      s1 = makeCfunc2D2D $ safunc2d'step safunc2d
       m1 = makeCfunc2D2D $ safunc2d'measure safunc2d
       
   e1ptr <- makeFunPtr2D   e1
-  s1ptr <- makeFunPtr2D2D s1
+--s1ptr <- makeFunPtr2D2D s1
   m1ptr <- makeFunPtr2D2D m1
   
   let cx = realToFrac x
@@ -34,7 +34,7 @@ simanSolve2d (x,y) safunc2d saparam = do
   
   alloca $ \rx -> 
     alloca $ \ry -> do 
-      c_siman_solve_2d cx cy e1ptr s1ptr m1ptr 
+      c_siman_solve_2d cx cy e1ptr m1ptr 
         n_tries iters_fixed_t step_size k t_initial mu_t t_min rx ry
       xfinal <- peek rx
       yfinal <- peek ry 
