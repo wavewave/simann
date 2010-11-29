@@ -15,6 +15,9 @@ ghc-prof-options: -caf-all -auto-all
 
 Exposed-Modules: 
 		 HEP.Minimizer.GSLSimulatedAnnealing
+		 HEP.Minimizer.GSLSimulatedAnnealing.Annealing
+		 HEP.Minimizer.GSLSimulatedAnnealing.Type
+		 HEP.Minimizer.GSLSimulatedAnnealing.Internal
 
 Extra-source-files: csrc/simann.h
 
@@ -23,8 +26,10 @@ Extensions:	 ForeignFunctionInterface
 Install-includes: csrc/simann.h
 C-sources: 	csrc/simann.c
 
+extra-libraries: gsl, gslcblas   
 
---Include-dirs: 	rootcode
+
+Include-dirs: 	csrc/
 --		$(ROOTSYS)/include 
 --		/home/wavewave/nfs/root/include
 
