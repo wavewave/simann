@@ -58,8 +58,8 @@ void siman_solve_2d ( double x, double y,
 
   void P1(void *xp)
   {
-    //    double *xarr = (double*) xp ;
-    // printf ("%12g %12g", xarr[0] , xarr[1] );
+    double *xarr = (double*) xp ;
+    printf ("%12g %12g", xarr[0] , xarr[1] );
   }
 
   const gsl_rng_type * T;

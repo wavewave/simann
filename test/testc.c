@@ -1,5 +1,9 @@
 #include <math.h>
 
+double func2( double x, double y) { 
+  return x*x + y * y ; // exp(-pow((x-1.0),2.0) - pow((y-1.0),2.0))*sin(8*x)*cos(8*y) ;
+}
+
 double func( double x, double y) { 
   return exp(-pow((x-1.0),2.0) - pow((y-1.0),2.0))*sin(8*x)*cos(8*y) 
           + pow (cos ( cos (8*y)) , 10.0)
