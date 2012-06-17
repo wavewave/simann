@@ -30,7 +30,7 @@ extra-lib-dirs: /Users/iankim/mac/usr/lib/
 include-dirs: /Users/iankim/mac/usr/include/
 extra-libraries: gsl, gslcblas   
 
-cc-options: -fnested-functions
+-- cc-options: -fnested-functions
 
 
 Include-dirs: 	csrc/
